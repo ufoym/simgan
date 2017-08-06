@@ -5,14 +5,16 @@ import keras
 import matplotlib
 import numpy as np
 import tensorflow as tf
-from keras import applications
+
+from itertools import groupby
+from matplotlib import pyplot as plt
+from skimage.util.montage import montage2d
 from keras import layers
 from keras import models
 from keras import optimizers
+from keras import applications
 from keras.preprocessing import image
-from matplotlib import pyplot as plt
-from itertools import groupby
-from skimage.util.montage import montage2d
+from keras.utils.vis_utils import model_to_dot
 
 path = os.path.dirname(os.path.abspath('.'))
 data_dir = os.path.join('var')
@@ -214,14 +216,10 @@ print(refiner_model.summary())
 print(discriminator_model.summary())
 print(combined_model.summary())
 
-from keras.utils.vis_utils import model_to_dot
-from IPython.display import SVG
 # Define model
 try:
     model_to_dot(refiner_model, show_shapes=True).write_svg('refiner_model.svg')
-    SVG('refiner_model.svg')
     model_to_dot(discriminator_model, show_shapes=True).write_svg('discriminator_model.svg')
-    SVG('discriminator_model.svg')
 except ImportError:
     print('Not running the patched version of keras/pydot!')
     pass
