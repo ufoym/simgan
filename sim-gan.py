@@ -6,6 +6,9 @@ import matplotlib
 import numpy as np
 import tensorflow as tf
 
+import matplotlib
+matplotlib.use('Agg')
+
 from itertools import groupby
 from matplotlib import pyplot as plt
 from skimage.util.montage import montage2d
